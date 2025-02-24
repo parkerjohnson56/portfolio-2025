@@ -132,13 +132,13 @@ export default function Home() {
 
                 <div className="flex flex-col items-center gap-1 my-2">
                   {/* Bubble Wrap */}
-                  <div className="grid grid-cols-9 gap-1 p-1 bg-sage-dark bg-opacity-85 rounded-xl">
+                  <div className="grid grid-cols-9 gap-1.5 md:gap-1 p-2 md:p-1 bg-sage-dark bg-opacity-85 rounded-xl">
                     {bubbles.map((popped, index) => (
                       <button
                         key={index}
                         onClick={() => popBubble(index)}
                         className={`
-                          w-6 h-6 rounded-full transition-all duration-200
+                          w-8 h-8 md:w-6 md:h-6 rounded-full transition-all duration-200
                           ${popped 
                             ? 'bg-gray-400 scale-90' 
                             : 'bg-sky hover:bg-sky-200 hover:scale-105 active:scale-90'
@@ -152,7 +152,7 @@ export default function Home() {
                   {/* Reset Button */}
                   <button
                     onClick={() => setBubbles(Array(36).fill(false))}
-                    className="text-xs bg-pink rounded-full px-3 py-1 hover:scale-105 transition-transform"
+                    className="text-sm md:text-xs bg-pink rounded-full px-4 py-1.5 md:px-3 md:py-1 hover:scale-105 transition-transform"
                   >
                     Reset Bubble Wrap
                   </button>
