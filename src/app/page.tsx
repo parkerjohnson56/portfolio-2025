@@ -108,7 +108,7 @@ export default function Home() {
                     />
                     <div className="text-white">
                       <h1 className={`text-lg md:text-xl mb-3 ${playfairDisplay.className}`}>
-                        Hey! I&apos;m <span className="font-semibold text-navy">Parker</span>,
+                        Hey! I'm <span className="font-semibold text-navy">Parker</span>,
                       </h1>
                       <p className={`text-base mb-4 ${playfairDisplay.className}`}>
                         <span className="font-semibold text-navy">full-stack</span> developer
@@ -250,10 +250,10 @@ export default function Home() {
                 </div>
                 <div className="w-[85%]">
                   <p className={`text-xs md:text-sm mb-2 text-navy ${playfairDisplay.className}`}>
-                    Hi again! I&apos;m a Full-Stack Web Developer with a strong focus on front-end development, currently a senior at Arizona State University, graduating in May 2025. I&apos;m passionate about problem-solving, debugging tricky code, and creating intuitive, user-friendly designs. Bringing ideas to life through clean, functional, and visually appealing web experiences is what excites me most. I thrive on learning new technologies, optimizing user experiences, and collaborating with others to build innovative solutions.
+                    Hi again! I'm a Full-Stack Web Developer with a strong focus on front-end development, currently a senior at Arizona State University, graduating in May 2025. I'm passionate about problem-solving, debugging tricky code, and creating intuitive, user-friendly designs. Bringing ideas to life through clean, functional, and visually appealing web experiences is what excites me most. I thrive on learning new technologies, optimizing user experiences, and collaborating with others to build innovative solutions.
                   </p>
                   <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
-                    Beyond coding, I love working on passion projects, reading, and staying active at the gym. I also share my space with three cats—Noodle, Spooky, and Toast—who make sure I never work alone. If you&apos;re interested in connecting, collaborating, or just chatting about web development, feel free to reach out!
+                    Beyond coding, I love working on passion projects, reading, and staying active at the gym. I also share my space with three cats—Noodle, Spooky, and Toast—who make sure I never work alone. If you're interested in connecting, collaborating, or just chatting about web development, feel free to reach out!
                   </p>
                 </div>
               </div>
