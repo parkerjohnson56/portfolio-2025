@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Make sure any custom CSS comes after the Tailwind directives */
+
 :root {
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',

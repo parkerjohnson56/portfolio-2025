@@ -3,6 +3,11 @@ const nextConfig = {
   images: {
     domains: ['via.placeholder.com'],
   },
+  // Add these for better CSS handling
+  webpack: (config) => {
+    config.optimization.minimize = true;
+    return config;
+  },
 }
 
 // Only add these settings when building for production/GitHub Pages
