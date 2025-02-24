@@ -5,7 +5,7 @@ export default function Home() {
         portfolio :3
       </h1>
       <p className="text-xl text-gray-600 text-center">
-      meow meow meow
+      meow meow meow TEST
       </p>
     </main>
   );
