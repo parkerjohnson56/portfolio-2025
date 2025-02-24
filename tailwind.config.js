@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -16,7 +17,14 @@ module.exports = {
         },
         sky: '#BDE0FE',        // skills section
         pink: '#FDCCD9',       // social links, work experience
-        navy: '#16404D',       // button text color
+        navy: '#16404D',       // text color for headings
+        
+        // Dark mode colors
+        dark: {
+          primary: '#1C1C1C',
+          card: '#2A2A2A',
+          text: '#FFFFFF',
+        }
       },
     },
   },
