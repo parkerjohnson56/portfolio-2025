@@ -7,6 +7,7 @@ import { BsArrowRightCircle } from 'react-icons/bs';
 import { useState, useEffect, useCallback } from 'react';
 import { Purple_Purse, Alegreya_Sans, Playfair_Display } from 'next/font/google';
 import confetti from 'canvas-confetti';
+import Image from 'next/image';
 
 const purplePurse = Purple_Purse({
   weight: '400',
@@ -98,9 +99,11 @@ export default function Home() {
               <div className="flex flex-col h-full">
                 <div className="flex flex-col items-center mb-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <img 
+                    <Image 
                       src="/images/profile-pic.png"
                       alt="Parker"
+                      width={80}
+                      height={80}
                       className="w-16 h-16 md:w-20 md:h-20 rounded-full"
                     />
                     <div className="text-white">
@@ -236,11 +239,15 @@ export default function Home() {
             <div className="bg-sage bg-opacity-85 rounded-2xl p-3 flex-grow">
               <h2 className={`text-base md:text-lg mb-2 text-center font-bold text-navy ${alegreyaSans.className}`}>about me! :)</h2>
               <div className="relative">
-                <img 
-                  src="/images/about-me.png"
-                  alt="Parker"
-                  className="float-right ml-4 mb-2 w-32 h-32 md:w-48 md:h-48 rounded-2xl object-cover"
-                />
+                <div className="float-right ml-4 mb-2">
+                  <Image 
+                    src="/images/about-me.png"
+                    alt="Parker"
+                    width={192}
+                    height={192}
+                    className="w-32 h-32 md:w-48 md:h-48 rounded-2xl object-cover"
+                  />
+                </div>
                 <div className="w-[85%]">
                   <p className={`text-xs md:text-sm mb-2 text-navy ${playfairDisplay.className}`}>
                     Hi again! I'm a Full-Stack Web Developer with a strong focus on front-end development, currently a senior at Arizona State University, graduating in May 2025. I'm passionate about problem-solving, debugging tricky code, and creating intuitive, user-friendly designs. Bringing ideas to life through clean, functional, and visually appealing web experiences is what excites me most. I thrive on learning new technologies, optimizing user experiences, and collaborating with others to build innovative solutions.
