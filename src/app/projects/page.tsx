@@ -6,70 +6,77 @@ import ProjectCard from '@/components/ProjectCard';
 import { useState } from 'react';
 import { useDarkMode } from '@/hooks/useDarkMode';
 
+interface Project {
+  title: string;
+  image: string;
+  link: string;
+  status: 'completed' | 'upcoming';
+}
+
 export default function Projects() {
   const [sortBy, setSortBy] = useState('all');
   const { isDark, toggleDark } = useDarkMode();
 
-  const projects = [
+  const projects: Project[] = [
     {
       title: "chef website",
       image: "/images/chef-website.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "paul hollis",
       image: "/images/paul-hollis.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "card game",
       image: "/images/card-game.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "air b&b",
       image: "/images/air-bnb.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "valentine",
       image: "/images/valentine.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "velci pet",
       image: "/images/velci-pet.png",
       link: "#",
-      status: "completed"
+      status: "completed" as const
     },
     {
       title: "Coming Soon",
       image: "/images/placeholder.png",
       link: "#",
-      status: "upcoming"
+      status: "upcoming" as const
     },
     {
       title: "Coming Soon",
       image: "/images/placeholder.png",
       link: "#",
-      status: "upcoming"
+      status: "upcoming" as const
     },
     {
       title: "Coming Soon",
       image: "/images/placeholder.png",
       link: "#",
-      status: "upcoming"
+      status: "upcoming" as const
     },
     {
       title: "Coming Soon",
       image: "/images/placeholder.png",
       link: "#",
-      status: "upcoming"
+      status: "upcoming" as const
     }
   ];
 
