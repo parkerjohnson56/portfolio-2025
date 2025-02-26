@@ -8,6 +8,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { Purple_Purse, Alegreya_Sans, Playfair_Display } from 'next/font/google';
 import confetti from 'canvas-confetti';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 const purplePurse = Purple_Purse({
   weight: '400',
@@ -25,7 +27,7 @@ const playfairDisplay = Playfair_Display({
 
 export default function Home() {
   const [time, setTime] = useState<string>('');
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleDark } = useDarkMode();
   const [audio] = useState(typeof window !== 'undefined' ? new Audio('/audio/pop.mp3') : null);
   const [bubbles, setBubbles] = useState(Array(36).fill(false));  // 9x4 grid
   const [bubbleSound] = useState(typeof window !== 'undefined' ? new Audio('/audio/bubble.mp3') : null);
@@ -87,8 +89,6 @@ export default function Home() {
         backgroundImage: `url(${isDark ? '/images/night.png' : '/images/day.png'})`,
       }}
     >
-      {/* Add a semi-transparent overlay for better readability */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-black/25' : 'bg-white/25'} transition-colors duration-300`} />
       {/* Make content relative to appear above overlay */}
       <div className="relative flex flex-col h-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 flex-grow">
@@ -124,10 +124,10 @@ export default function Home() {
                 </div>
 
                 <div className="flex justify-center mb-2">
-                  <button className="bg-pink rounded-full p-3 md:p-4 hover:scale-110 transition-transform flex items-center gap-2 w-40 md:w-48 justify-center">
+                  <Link href="/projects" className="bg-pink rounded-full p-3 md:p-4 hover:scale-110 transition-transform flex items-center gap-2 w-40 md:w-48 justify-center">
                     <span className="text-sm md:text-base text-navy">Portfolio</span>
                     <BsArrowRightCircle className="text-xl md:text-2xl text-navy" />
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="flex flex-col items-center gap-1 my-2">
@@ -164,7 +164,7 @@ export default function Home() {
                   </h2>
                   <div className="flex items-center gap-2">
                     <button 
-                      onClick={() => setIsDark(!isDark)} 
+                      onClick={toggleDark} 
                       className="p-2 rounded-full hover:scale-110 transition-transform"
                     >
                       {isDark ? (
@@ -215,19 +215,19 @@ export default function Home() {
               <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>skills</h2>
               <div className="space-y-3">
                 <div>
-                  <h3 className={`text-lg md:text-xl mb-1 text-left font-bold text-navy ${alegreyaSans.className}`}>frontend</h3>
+                  <h3 className={`text-base md:text-lg mb-1 text-left font-bold text-navy ${playfairDisplay.className}`}>frontend</h3>
                   <p className={`text-xs md:text-sm text-left ${playfairDisplay.className}`}>
                     HTML, CSS, Bootstrap, Tailwind, Next.js, React, SEO Optimization, Javascript, Typescript
                   </p>
                 </div>
                 <div>
-                  <h3 className={`text-lg md:text-xl mb-1 text-left font-bold text-navy ${alegreyaSans.className}`}>backend</h3>
+                  <h3 className={`text-base md:text-lg mb-1 text-left font-bold text-navy ${playfairDisplay.className}`}>backend</h3>
                   <p className={`text-xs md:text-sm text-left ${playfairDisplay.className}`}>
                     Next.js, SQL (Currently expanding my back-end knowledge)
                   </p>
                 </div>
                 <div>
-                  <h3 className={`text-lg md:text-xl mb-1 text-left font-bold text-navy ${alegreyaSans.className}`}>tools</h3>
+                  <h3 className={`text-base md:text-lg mb-1 text-left font-bold text-navy ${playfairDisplay.className}`}>tools</h3>
                   <p className={`text-xs md:text-sm text-left ${playfairDisplay.className}`}>
                     VS Code, Cursor, Github, Figma, Adobe Cloud, Chatgpt, Jira, Vercel, Dev Tools
                   </p>
@@ -237,7 +237,9 @@ export default function Home() {
 
             {/* About Me Card */}
             <div className="bg-sage bg-opacity-85 rounded-2xl p-3 flex-grow">
-              <h2 className={`text-base md:text-lg mb-2 text-center font-bold text-navy ${alegreyaSans.className}`}>about me! :)</h2>
+              <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>
+                about me! :)
+              </h2>
               <div className="relative">
                 <div className="float-right ml-4 mb-2">
                   <Image 
@@ -245,15 +247,28 @@ export default function Home() {
                     alt="Parker"
                     width={192}
                     height={192}
-                    className="w-32 h-32 md:w-48 md:h-48 rounded-2xl object-cover"
+                    className="w-28 h-28 md:w-48 md:h-48 rounded-2xl object-cover"
                   />
                 </div>
-                <div className="w-[85%]">
-                  <p className={`text-xs md:text-sm mb-2 text-navy ${playfairDisplay.className}`}>
-                    Hi again! I'm a Full-Stack Web Developer with a strong focus on front-end development, currently a senior at Arizona State University, graduating in May 2025. I'm passionate about problem-solving, debugging tricky code, and creating intuitive, user-friendly designs. Bringing ideas to life through clean, functional, and visually appealing web experiences is what excites me most. I thrive on learning new technologies, optimizing user experiences, and collaborating with others to build innovative solutions.
-                  </p>
+                <div className="w-[85%] space-y-3">
                   <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
-                    Beyond coding, I love working on passion projects, reading, and staying active at the gym. I also share my space with three cats—Noodle, Spooky, and Toast—who make sure I never work alone. If you're interested in connecting, collaborating, or just chatting about web development, feel free to reach out!
+                    Hi again! I'm a Full-Stack Web Developer with a strong focus on front-end development, currently a senior at Arizona State University, graduating in May 2025.
+                  </p>
+
+                  <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
+                    I'm passionate about problem-solving, debugging tricky code, and creating intuitive, user-friendly designs. Bringing ideas to life through clean, functional, and visually appealing web experiences is what excites me most.
+                  </p>
+
+                  <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
+                    I thrive on learning new technologies, optimizing user experiences, and collaborating with others to build innovative solutions.
+                  </p>
+
+                  <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
+                    Beyond coding, I love working on passion projects, reading, and staying active at the gym. I also share my space with three cats—Noodle, Spooky, and Toast—who make sure I never work alone.
+                  </p>
+
+                  <p className={`text-xs md:text-sm text-navy ${playfairDisplay.className}`}>
+                    If you're interested in connecting, collaborating, or just chatting about web development, feel free to reach out!
                   </p>
                 </div>
               </div>
