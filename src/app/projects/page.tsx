@@ -21,7 +21,7 @@ export default function Projects() {
     {
       title: "chef website",
       image: "/images/chef-website.png",
-      link: "#",
+      link: "/projects/chef-website",
       status: "completed" as const
     },
     {
