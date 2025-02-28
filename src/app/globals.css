@@ -22,9 +22,12 @@ body {
   overflow-x: hidden;
 }
 
+html.dark {
+  background-color: #1a1a1a;
+}
+
 body {
   color: #333;
-  background: #fff;
 }
 
 a {

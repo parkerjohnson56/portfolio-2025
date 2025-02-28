@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { HiPaperClip } from 'react-icons/hi';
 import { BsArrowRightCircle } from 'react-icons/bs';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Purple_Purse, Alegreya_Sans, Playfair_Display } from 'next/font/google';
 import confetti from 'canvas-confetti';
 import Image from 'next/image';
@@ -31,6 +31,9 @@ export default function Home() {
   const [audio] = useState(typeof window !== 'undefined' ? new Audio('/audio/pop.mp3') : null);
   const [bubbles, setBubbles] = useState(Array(36).fill(false));  // 9x4 grid
   const [bubbleSound] = useState(typeof window !== 'undefined' ? new Audio('/audio/bubble.mp3') : null);
+  const [borderColor, setBorderColor] = useState('#FFFFFF');
+  const colorInputRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // Function to format time as HH:MMam/pm
@@ -82,6 +85,20 @@ export default function Home() {
     });
   }, [bubbleSound]);
 
+  // Function to convert hex to rgba with opacity
+  const getBorderStyle = (color: string) => {
+    // Remove the # if present
+    const hex = color.replace('#', '');
+    
+    // Convert hex to rgb
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    // Return rgba with 85% opacity to match bg-opacity-85
+    return `3px solid rgba(${r}, ${g}, ${b}, 0.85)`;
+  };
+
   return (
     <main 
       className={`min-h-screen p-4 md:p-8 transition-all duration-300 bg-cover bg-center bg-no-repeat bg-fixed md:bg-auto`}
@@ -95,7 +112,10 @@ export default function Home() {
           {/* Left Column */}
           <div className="md:col-span-4 flex flex-col gap-4 md:gap-6">
             {/* Intro Card */}
-            <div className="bg-sage-dark bg-opacity-85 rounded-3xl p-3 md:p-4 flex-grow">
+            <div 
+              className={`bg-sage-dark bg-opacity-85 rounded-3xl p-3 md:p-4 flex-grow`}
+              style={{ border: getBorderStyle(borderColor) }}
+            >
               <div className="flex flex-col h-full">
                 <div className="flex flex-col items-center mb-4">
                   <div className="flex items-center gap-3 mb-2">
@@ -159,10 +179,27 @@ export default function Home() {
                 </div>
 
                 <div className="mt-2 flex justify-center items-center gap-4">
-                  <h2 className={`text-4xl md:text-6xl font-light ${isDark ? 'text-dark-text' : 'text-primary'} ${purplePurse.className}`}>
+                  <h2 className={`text-4xl md:text-6xl font-light ${purplePurse.className}`}
+                    style={{ color: borderColor }}
+                  >
                     {time}
                   </h2>
                   <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <input
+                        type="color"
+                        ref={colorInputRef}
+                        value={borderColor}
+                        onChange={(e) => setBorderColor(e.target.value)}
+                        className="hidden"
+                      />
+                      <button 
+                        onClick={() => colorInputRef.current?.click()}
+                        className="p-2 rounded-full hover:scale-110 transition-transform"
+                      >
+                        <div className="text-2xl md:text-3xl">🌈</div>
+                      </button>
+                    </div>
                     <button 
                       onClick={toggleDark} 
                       className="p-2 rounded-full hover:scale-110 transition-transform"
@@ -185,25 +222,31 @@ export default function Home() {
             </div>
 
             {/* Social Links Card */}
-            <div className="bg-pink bg-opacity-85 rounded-3xl p-3 h-[60px] md:h-[70px] flex items-center justify-center">
+            <div 
+              className={`bg-pink bg-opacity-85 rounded-3xl p-3 h-[60px] md:h-[70px] flex items-center justify-center`}
+              style={{ border: getBorderStyle(borderColor) }}
+            >
               <div className="flex justify-center items-center gap-8 md:gap-12 text-4xl md:text-5xl">
-                <a href="#" className="text-white hover:scale-110 transition-transform">
+                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
                   <FaGithub />
                 </a>
-                <a href="#" className="text-white hover:scale-110 transition-transform">
+                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
                   <FaLinkedinIn />
                 </a>
-                <a href="#" className="text-white hover:scale-110 transition-transform">
+                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
                   <MdEmail />
                 </a>
-                <a href="#" className="text-white hover:scale-110 transition-transform">
+                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
                   <HiPaperClip />
                 </a>
               </div>
             </div>
 
             {/* Footer bento box */}
-            <div className="hidden md:block bg-sage-dark bg-opacity-85 rounded-3xl p-3 text-center text-[10px] md:text-xs">
+            <div 
+              className="hidden md:block bg-sage-dark bg-opacity-85 rounded-3xl p-3 text-center text-[10px] md:text-xs"
+              style={{ border: getBorderStyle(borderColor) }}
+            >
               © 2025 · Crafted with ❤️ using React by Parker Johnson.
             </div>
           </div>
@@ -211,7 +254,10 @@ export default function Home() {
           {/* Middle Column */}
           <div className="md:col-span-5 flex flex-col gap-8 md:gap-6">
             {/* Skills Card */}
-            <div className="bg-sky bg-opacity-85 rounded-2xl p-3">
+            <div 
+              className={`bg-sky bg-opacity-85 rounded-2xl p-3`}
+              style={{ border: getBorderStyle(borderColor) }}
+            >
               <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>skills</h2>
               <div className="space-y-3">
                 <div>
@@ -236,7 +282,10 @@ export default function Home() {
             </div>
 
             {/* About Me Card */}
-            <div className="bg-sage bg-opacity-85 rounded-2xl p-3 flex-grow">
+            <div 
+              className="bg-sage bg-opacity-85 rounded-2xl p-3 flex-grow"
+              style={{ border: getBorderStyle(borderColor) }}
+            >
               <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>
                 about me! :)
               </h2>
@@ -278,8 +327,13 @@ export default function Home() {
           {/* Right Column */}
           <div className="md:col-span-3">
             {/* Work Experience Card */}
-            <div className="bg-pink bg-opacity-85 rounded-2xl p-3 h-full">
-              <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>work experience</h2>
+            <div 
+              className="bg-pink bg-opacity-85 rounded-2xl p-3 h-full"
+              style={{ border: getBorderStyle(borderColor) }}
+            >
+              <h2 className={`text-base md:text-lg mb-3 text-center font-bold text-navy ${alegreyaSans.className}`}>
+                work experience
+              </h2>
               <div className="space-y-3">
                 {/* First Experience - more transparent at 75% */}
                 <div className="bg-sage-dark bg-opacity-75 rounded-xl p-3">
@@ -325,7 +379,10 @@ export default function Home() {
         </div>
 
         {/* Mobile Footer */}
-        <div className="md:hidden bg-sage-dark bg-opacity-85 rounded-3xl p-3 text-center text-[10px] mt-8">
+        <div 
+          className="md:hidden bg-sage-dark bg-opacity-85 rounded-3xl p-3 text-center text-[10px] mt-8"
+          style={{ border: getBorderStyle(borderColor) }}
+        >
           © 2025 · Crafted with ❤️ using React by Parker Johnson.
         </div>
       </div>

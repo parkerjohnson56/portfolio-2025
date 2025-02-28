@@ -19,49 +19,39 @@ export default function Projects() {
 
   const projects: Project[] = [
     {
-      title: "chef website",
+      title: "chef blog",
       image: "/images/chef-website.png",
       link: "/projects/chef-website",
       status: "completed" as const
     },
+
+    {
+      title: "card matching game",
+      image: "/images/card-game.png",
+      link: "/projects/card-game",
+      status: "completed" as const
+    },
+    {
+      title: "air b&b search",
+      image: "/images/air-bnb.png",
+      link: "/projects/air-bnb",
+      status: "completed" as const
+    },
+    {
+      title: "vet clinic",
+      image: "/images/velci-pet.png",
+      link: "/projects/velci-pet",
+      status: "completed" as const
+    },
+  
+    {
+      title: "event planner",
+      image: "/images/dreamscape-events.png",
+      link: "/projects/dreamscape-events",
+      status: "completed" as const
+    },
     {
       title: "paul hollis",
-      image: "/images/paul-hollis.png",
-      link: "#",
-      status: "completed" as const
-    },
-    {
-      title: "card game",
-      image: "/images/card-game.png",
-      link: "#",
-      status: "completed" as const
-    },
-    {
-      title: "air b&b",
-      image: "/images/air-bnb.png",
-      link: "#",
-      status: "completed" as const
-    },
-    {
-      title: "valentine",
-      image: "/images/valentine.png",
-      link: "#",
-      status: "completed" as const
-    },
-    {
-      title: "velci pet",
-      image: "/images/velci-pet.png",
-      link: "#",
-      status: "completed" as const
-    },
-    {
-      title: "Coming Soon",
-      image: "/images/placeholder.png",
-      link: "#",
-      status: "upcoming" as const
-    },
-    {
-      title: "Coming Soon",
       image: "/images/placeholder.png",
       link: "#",
       status: "upcoming" as const
