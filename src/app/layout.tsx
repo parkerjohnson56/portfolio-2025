@@ -9,6 +9,23 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "portfolio :)",
   description: "parker johnson's portfolio",
+  openGraph:{
+    title: "portfolio :)",
+    description: "parker johnson's portfolio",
+    url: "https://parkerj.org",
+    siteName: "Parker's Portfolio",
+    images: [
+      {
+        url: "/images/favicon.png",
+        width: 800,
+        height: 600,
+      }
+    ],
+    locale: "en_US",
+  },
+  icons: {
+    icon: 'images/favicon.png'
+  }
 };
 
 export default function RootLayout({
