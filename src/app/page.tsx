@@ -10,6 +10,7 @@ import confetti from 'canvas-confetti';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useDarkMode } from '../hooks/useDarkMode';
+import { HexColorPicker } from "react-colorful";
 
 const purplePurse = Purple_Purse({
   weight: '400',
@@ -31,8 +32,8 @@ export default function Home() {
   const [audio] = useState(typeof window !== 'undefined' ? new Audio('/audio/pop.mp3') : null);
   const [bubbles, setBubbles] = useState(Array(36).fill(false));  // 9x4 grid
   const [bubbleSound] = useState(typeof window !== 'undefined' ? new Audio('/audio/bubble.mp3') : null);
+  const [showColorPicker, setShowColorPicker] = useState(false);
   const [borderColor, setBorderColor] = useState('#FFFFFF');
-  const colorInputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -185,21 +186,12 @@ export default function Home() {
                     {time}
                   </h2>
                   <div className="flex items-center gap-2">
-                    <div className="relative">
-                      <input
-                        type="color"
-                        ref={colorInputRef}
-                        value={borderColor}
-                        onChange={(e) => setBorderColor(e.target.value)}
-                        className="hidden"
-                      />
-                      <button 
-                        onClick={() => colorInputRef.current?.click()}
-                        className="p-2 rounded-full hover:scale-110 transition-transform"
-                      >
-                        <div className="text-2xl md:text-3xl">🌈</div>
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => setShowColorPicker(true)}
+                      className="p-2 rounded-full hover:scale-110 transition-transform"
+                    >
+                      <div className="text-2xl md:text-3xl">🌈</div>
+                    </button>
                     <button 
                       onClick={toggleDark} 
                       className="p-2 rounded-full hover:scale-110 transition-transform"
@@ -385,6 +377,29 @@ export default function Home() {
         >
           © 2025 · Crafted with ❤️ using React by Parker Johnson.
         </div>
+
+        {/* Add the color picker modal */}
+        {showColorPicker && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+            <div 
+              className="absolute inset-0 bg-black/50"
+              onClick={() => setShowColorPicker(false)}
+            />
+            <div className="relative bg-white rounded-2xl p-4 flex flex-col items-center gap-4">
+              <h3 className="text-navy font-medium">Choose a Color</h3>
+              <HexColorPicker 
+                color={borderColor} 
+                onChange={setBorderColor}
+              />
+              <button
+                onClick={() => setShowColorPicker(false)}
+                className="mt-2 px-4 py-2 bg-navy text-white rounded-full hover:opacity-90"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
