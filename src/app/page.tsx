@@ -219,16 +219,38 @@ export default function Home() {
               style={{ border: getBorderStyle(borderColor) }}
             >
               <div className="flex justify-center items-center gap-8 md:gap-12 text-4xl md:text-5xl">
-                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
+                <a 
+                  href="https://github.com/parkerjohnson56" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform" 
+                  style={{ color: borderColor }}
+                >
                   <FaGithub />
                 </a>
-                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
+                <a 
+                  href="https://www.linkedin.com/in/parkerjohnson53/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform" 
+                  style={{ color: borderColor }}
+                >
                   <FaLinkedinIn />
                 </a>
-                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
+                <a 
+                  href="mailto:parkerjdev@gmail.com" 
+                  className="hover:scale-110 transition-transform" 
+                  style={{ color: borderColor }}
+                >
                   <MdEmail />
                 </a>
-                <a href="#" className="hover:scale-110 transition-transform" style={{ color: borderColor }}>
+                <a 
+                  href="/files/resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform" 
+                  style={{ color: borderColor }}
+                >
                   <HiPaperClip />
                 </a>
               </div>
